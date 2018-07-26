@@ -6,7 +6,7 @@ ENV SDK_TOOLS="4333796" \
     TARGET_SDK="27" \
     ANDROID_HOME="/opt/sdk" \
     RUBY_VERSION="2.4.2" \
-    PATH=$HOME/.rbenv/shims:/root/.rbenv/bin:/root/.rbenv/plugins/ruby-build/bin:$PATH
+    PATH=/root/.rbenv/shims:/root/.rbenv/bin:/root/.rbenv/plugins/ruby-build/bin:$PATH
 
 # Install required dependencies
 RUN apt-get update && \
