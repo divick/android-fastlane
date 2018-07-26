@@ -18,15 +18,17 @@ RUN apt-get update && \
         gcc \
         make \
         wget \
-        git && \
-    rm -rf /var/cache/apt/*
+        git \
+    && rm -rf /var/cache/apt/* \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-RUN git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
-RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh
-RUN echo 'eval "$(rbenv init -)"' >> .bashrc
-RUN mkdir -p "$(rbenv root)"/plugins
-RUN rbenv install ${RUBY_VERSION}
+# Install ruby via rbenv and ruby-build
+RUN git clone https://github.com/rbenv/rbenv.git ~/.rbenv \
+    && git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build \
+    && echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh \
+    && echo 'eval "$(rbenv init -)"' >> .bashrc \
+    && mkdir -p "$(rbenv root)"/plugins \
+    && rbenv install ${RUBY_VERSION}
 
 # Download and extract Android Tools
 RUN wget http://dl.google.com/android/repository/sdk-tools-linux-${SDK_TOOLS}.zip -O /tmp/tools.zip && \
