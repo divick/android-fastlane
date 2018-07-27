@@ -16,6 +16,7 @@ RUN apt-get update && \
         libreadline-dev \
         zlib1g-dev \
         gcc \
+        g++ \
         make \
         wget \
         git \
