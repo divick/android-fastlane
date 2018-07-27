@@ -41,5 +41,5 @@ RUN git clone https://github.com/rbenv/rbenv.git ~/.rbenv \
     && echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh \
     && echo 'eval "$(rbenv init -)"' >> /root/.bashrc \
     && mkdir -p "$(rbenv root)"/plugins \
-    && rbenv install ${RUBY_VERSION}
+    && rbenv install ${RUBY_VERSION} \
     && rbenv global ${RUBY_VERSION}
