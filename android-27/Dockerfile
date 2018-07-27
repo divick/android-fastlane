@@ -22,14 +22,6 @@ RUN apt-get update && \
     && rm -rf /var/cache/apt/* \
     && rm -rf /var/lib/apt/lists/*
 
-# Install ruby via rbenv and ruby-build
-RUN git clone https://github.com/rbenv/rbenv.git ~/.rbenv \
-    && git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build \
-    && echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh \
-    && echo 'eval "$(rbenv init -)"' >> .bashrc \
-    && mkdir -p "$(rbenv root)"/plugins \
-    && rbenv install ${RUBY_VERSION}
-
 # Download and extract Android Tools
 RUN wget http://dl.google.com/android/repository/sdk-tools-linux-${SDK_TOOLS}.zip -O /tmp/tools.zip && \
     mkdir -p ${ANDROID_HOME} && \
@@ -41,3 +33,12 @@ RUN mkdir -p /root/.android/ && touch /root/.android/repositories.cfg && \
     yes | ${ANDROID_HOME}/tools/bin/sdkmanager "--licenses" && \
     ${ANDROID_HOME}/tools/bin/sdkmanager "--update" && \
     ${ANDROID_HOME}/tools/bin/sdkmanager "build-tools;${BUILD_TOOLS}" "platform-tools" "platforms;android-${TARGET_SDK}" "extras;android;m2repository" "extras;google;google_play_services" "extras;google;m2repository" "emulator"
+
+# Install ruby via rbenv and ruby-build
+RUN git clone https://github.com/rbenv/rbenv.git ~/.rbenv \
+    && git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build \
+    && echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh \
+    && echo 'eval "$(rbenv init -)"' >> /root/.bashrc \
+    && mkdir -p "$(rbenv root)"/plugins \
+    && rbenv install ${RUBY_VERSION}
+    && rbenv global ${RUBY_VERSION}
