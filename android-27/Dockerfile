@@ -2,8 +2,8 @@ FROM openjdk:8-slim
 LABEL maintainer Divick K.<divick@gorapid.io>
 
 ENV SDK_TOOLS="4333796" \
-    BUILD_TOOLS="28.0.1" \
-    TARGET_SDK="27" \
+    BUILD_TOOLS="28.0.2" \
+    TARGET_SDK="28" \
     ANDROID_HOME="/opt/sdk" \
     RUBY_VERSION="2.4.2" \
     PATH=/root/.rbenv/shims:/root/.rbenv/bin:/root/.rbenv/plugins/ruby-build/bin:$PATH
