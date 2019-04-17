@@ -27,8 +27,10 @@ ENV SDK_TOOLS="${SDK_TOOLS}" \
     PATH=/root/.rbenv/shims:/root/.rbenv/bin:/root/.rbenv/plugins/ruby-build/bin:$PATH
 
 # 1. Install required dependencies via apt
-# 2. Install android sdk and tools
+# 2. Download and extract Android android sdk and tools
 # 3. Install rbenv to install required ruby version
+# 4. Install ruby
+# 5. Install fastlane
 RUN apt-get update \
     && apt-get install -y \
         ca-certificates \
