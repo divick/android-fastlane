@@ -1,14 +1,34 @@
 FROM openjdk:8-slim
 LABEL maintainer Divick K.<divick@gorapid.io>
 
-ENV SDK_TOOLS="4333796" \
-    BUILD_TOOLS="28.0.2" \
-    TARGET_SDK="28" \
-    ANDROID_HOME="/opt/sdk" \
-    RUBY_VERSION="2.4.2" \
+ARG SDK_TOOLS="4333796"
+ARG BUILD_TOOLS="28.0.2"
+ARG TARGET_SDK="28"
+ARG ANDROID_HOME="/opt/sdk"
+ARG RUBY_VERSION="2.4.2"
+ARG FASTLANE_VERSION="2.4.2"
+
+# Check if the build args to docker build have been passed or not
+RUN test -n "$SDK_TOOLS"
+RUN test -n "$BUILD_TOOLS"
+RUN test -n "$TARGET_SDK"
+RUN test -n "$ANDROID_HOME"
+RUN test -n "$RUBY_VERSION"
+RUN test -n "$FASTLANE_VERSION"
+
+# Specify the environment variables (which are available inside the
+# container when using `docker run` command) as well as during the
+# `docker build` command
+ENV SDK_TOOLS="${SDK_TOOLS}" \
+    BUILD_TOOLS="${BUILD_TOOLS}" \
+    TARGET_SDK="${TARGET_SDK}" \
+    ANDROID_HOME="${ANDROID_HOME}" \
+    RUBY_VERSION="${RUBY_VERSION}" \
     PATH=/root/.rbenv/shims:/root/.rbenv/bin:/root/.rbenv/plugins/ruby-build/bin:$PATH
 
-# Install required dependencies
+# 1. Install required dependencies via apt
+# 2. Install android sdk and tools
+# 3. Install rbenv to install required ruby version
 RUN apt-get update \
     && apt-get install -y \
         ca-certificates \
@@ -38,4 +58,5 @@ RUN apt-get update \
     && mkdir -p "$(rbenv root)"/plugins \
     && rbenv install ${RUBY_VERSION} \
     && rbenv global ${RUBY_VERSION} \
-    && gem install bundler
+    && gem install bundler \
+    && gem install ${FASTLANE_VERSION}
