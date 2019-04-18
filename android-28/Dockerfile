@@ -6,7 +6,7 @@ ARG BUILD_TOOLS="28.0.2"
 ARG TARGET_SDK="28"
 ARG ANDROID_HOME="/opt/sdk"
 ARG RUBY_VERSION="2.4.2"
-ARG FASTLANE_VERSION="2.4.2"
+ARG FASTLANE_VERSION="2.120.0"
 
 # Check if the build args to docker build have been passed or not
 RUN test -n "$SDK_TOOLS"
@@ -61,4 +61,4 @@ RUN apt-get update \
     && rbenv install ${RUBY_VERSION} \
     && rbenv global ${RUBY_VERSION} \
     && gem install bundler \
-    && gem install ${FASTLANE_VERSION}
+    && gem install fastlane -v ${FASTLANE_VERSION}
