@@ -41,6 +41,8 @@ RUN apt-get update \
         g++ \
         make \
         wget \
+        unzip \
+        bzip2 \
         git \
     && rm -rf /var/cache/apt/* \
     && rm -rf /var/lib/apt/lists/* \
