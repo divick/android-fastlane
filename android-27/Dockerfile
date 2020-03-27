@@ -2,11 +2,11 @@ FROM openjdk:8-slim
 LABEL maintainer Divick K.<divick@gorapid.io>
 
 ARG SDK_TOOLS="4333796"
-ARG BUILD_TOOLS="27.0.2"
+ARG BUILD_TOOLS="27.0.3"
 ARG TARGET_SDK="27"
 ARG ANDROID_HOME="/opt/sdk"
 ARG RUBY_VERSION="2.4.2"
-ARG FASTLANE_VERSION="2.120.0"
+ARG FASTLANE_VERSION="2.144.0"
 
 # Check if the build args to docker build have been passed or not
 RUN test -n "$SDK_TOOLS"
