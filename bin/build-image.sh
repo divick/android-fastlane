@@ -14,4 +14,4 @@ elif [[ -z "${TARGET_SDK}" ]]; then
 else
     target=${TARGET_SDK}
 fi
-docker build --build-arg TARGET_SDK=${TARGET_SDK} -t gorapidio/android-fastlane -f android-${target}/Dockerfile android-${target}/
+docker build --build-arg TARGET_SDK=${TARGET_SDK} -t gorapidio/android-fastlane:android-${TARGET_SDK} -f android-${target}/Dockerfile android-${target}/
