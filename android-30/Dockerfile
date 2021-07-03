@@ -73,8 +73,7 @@ RUN chown -R $UID:$GID $HOME/.android \
     && chown -R $UID:$GID $HOME/.local
 
 ENV PATH=$HOME/.rbenv/shims:$HOME/.rbenv/bin:$HOME/.rbenv/plugins/ruby-build/bin:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/build-tools/$BUILD_TOOLS:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/bin:$PATH
+ENV ANDROID_SDK_ROOT=$ANDROID_HOME
 
 USER ${UID}:${GID}
 WORKDIR $HOME
-
-CMD ["/bin/bash"]
