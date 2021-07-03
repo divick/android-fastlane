@@ -22,12 +22,7 @@ RUN test -n "$FASTLANE_VERSION"
 # Specify the environment variables (which are available inside the
 # container when using `docker run` command) as well as during the
 # `docker build` command
-ENV CMDLINE_TOOLS_VERSION="${CMDLINE_TOOLS_VERSION}" \
-    BUILD_TOOLS="${BUILD_TOOLS}" \
-    TARGET_SDK="${TARGET_SDK}" \
-    RUBY_VERSION="${RUBY_VERSION}" \
-    USER=docker \
-    HOME=/home/$USER \
+ENV HOME=/home/$USER \
     ANDROID_HOME=/home/$USER/android
 
 # 1. Install required dependencies via apt
