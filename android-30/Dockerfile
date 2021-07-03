@@ -54,9 +54,9 @@ RUN apt-get update \
     && rm -v /tmp/tools.zip \
     && mkdir -p $HOME/.android/ \
     && touch $HOME/.android/repositories.cfg \
-    && yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} "--licenses" \
-    && ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} "--update" \
-    && ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;${BUILD_TOOLS}" "platform-tools" "platforms;android-${TARGET_SDK}" "extras;android;m2repository" "extras;google;google_play_services" "extras;google;m2repository" "emulator" \
+    && yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/sdk "--licenses" \
+    && ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/sdk "--update" \
+    && ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}/sdk "build-tools;${BUILD_TOOLS}" "platform-tools" "platforms;android-${TARGET_SDK}" "extras;android;m2repository" "extras;google;google_play_services" "extras;google;m2repository" "emulator" \
     && git clone https://github.com/rbenv/rbenv.git ~/.rbenv \
     && git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build \
     && ~/.rbenv/plugins/ruby-build/install.sh \
@@ -72,8 +72,8 @@ RUN chown -R $UID:$GID $HOME/.android \
     && chown -R $UID:$GID $HOME/.rbenv \
     && chown -R $UID:$GID $HOME/.local
 
-ENV PATH=$HOME/.rbenv/shims:$HOME/.rbenv/bin:$HOME/.rbenv/plugins/ruby-build/bin:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/build-tools/$BUILD_TOOLS:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/bin:$PATH
-ENV ANDROID_SDK_ROOT=$ANDROID_HOME
+ENV ANDROID_SDK_ROOT=$ANDROID_HOME/sdk
+ENV PATH=$HOME/.rbenv/shims:$HOME/.rbenv/bin:$HOME/.rbenv/plugins/ruby-build/bin:$ANDROID_HOME/sdk/tools:$ANDROID_HOME/sdk/tools/bin:$ANDROID_HOME/sdk/build-tools/$BUILD_TOOLS:$ANDROID_HOME/sdk/platform-tools:$ANDROID_HOME/cmdline-tools/bin:$PATH
 
 USER ${UID}:${GID}
 WORKDIR $HOME
