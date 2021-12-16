@@ -19,7 +19,8 @@ RUN test -n "$FASTLANE_VERSION"
 # Specify the environment variables (which are available inside the
 # container when using `docker run` command) as well as during the
 # `docker build` command
-ENV ANDROID_HOME=/$HOME/android
+ENV HOME=/root
+ENV ANDROID_HOME=$HOME/android
 
 # 1. Install required dependencies via apt
 # 2. Download and extract Android android sdk and tools
