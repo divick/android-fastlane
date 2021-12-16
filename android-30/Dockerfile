@@ -6,11 +6,8 @@ LABEL maintainer Divick K.<divick@gorapid.io>
 ARG CMDLINE_TOOLS_VERSION="7302050"
 ARG BUILD_TOOLS="29.0.3"
 ARG TARGET_SDK="30"
-ARG RUBY_VERSION="3.0.1"
-ARG FASTLANE_VERSION="2.187.0"
-ARG USER="docker"
-ARG UID=1000
-ARG GID=1000
+ARG RUBY_VERSION="3.0.2"
+ARG FASTLANE_VERSION="2.199.0"
 
 # Check if the build args to docker build have been passed or not
 RUN test -n "$CMDLINE_TOOLS_VERSION"

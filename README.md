@@ -23,5 +23,5 @@ TARGET_SDK=28 ./bin/build-image.sh
 
 #### To override the [SDK_TOOLS|BUILD_TOOLS|RUBY|FASTLANE] versions
 ```
-docker build --build-arg FASTLANE_VESION=<fastlane-version> -t <whatever-tag> -f android-<sdk-version> android-<sdk-version>
+docker build --build-arg FASTLANE_VERSION=<fastlane-version> -t <whatever-tag> -f android-<sdk-version> android-<sdk-version>
 ```
