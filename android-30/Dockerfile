@@ -19,8 +19,7 @@ RUN test -n "$FASTLANE_VERSION"
 # Specify the environment variables (which are available inside the
 # container when using `docker run` command) as well as during the
 # `docker build` command
-ENV HOME=/home/$USER \
-    ANDROID_HOME=/home/$USER/android
+ENV ANDROID_HOME=/$HOME/android
 
 # 1. Install required dependencies via apt
 # 2. Download and extract Android android sdk and tools
@@ -44,7 +43,6 @@ RUN apt-get update \
     && apt-get autoremove -y \
     && rm -rf /var/cache/apt/* \
     && rm -rf /var/lib/apt/lists/* \
-    && useradd -m -u $UID -s /bin/bash -U $USER \
     && wget https://dl.google.com/android/repository/commandlinetools-linux-${CMDLINE_TOOLS_VERSION}_latest.zip -O /tmp/tools.zip \
     && mkdir -p ${ANDROID_HOME} \
     && unzip /tmp/tools.zip -d ${ANDROID_HOME} \
@@ -64,13 +62,7 @@ RUN apt-get update \
     && ~/.rbenv/shims/gem install bundler \
     && ~/.rbenv/shims/gem install fastlane -v ${FASTLANE_VERSION}
 
-RUN chown -R $UID:$GID $HOME/.android \
-    && chown -R $UID:$GID $ANDROID_HOME \
-    && chown -R $UID:$GID $HOME/.rbenv \
-    && chown -R $UID:$GID $HOME/.local
-
 ENV ANDROID_SDK_ROOT=$ANDROID_HOME/sdk
 ENV PATH=$HOME/.rbenv/shims:$HOME/.rbenv/bin:$HOME/.rbenv/plugins/ruby-build/bin:$ANDROID_HOME/sdk/tools:$ANDROID_HOME/sdk/tools/bin:$ANDROID_HOME/sdk/build-tools/$BUILD_TOOLS:$ANDROID_HOME/sdk/platform-tools:$ANDROID_HOME/cmdline-tools/bin:$PATH
 
-USER ${UID}:${GID}
 WORKDIR $HOME
