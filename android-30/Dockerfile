@@ -67,5 +67,3 @@ RUN apt-get update \
 
 ENV ANDROID_SDK_ROOT=$ANDROID_HOME/sdk
 ENV PATH=$HOME/.rbenv/shims:$HOME/.rbenv/bin:$HOME/.rbenv/plugins/ruby-build/bin:$ANDROID_HOME/sdk/tools:$ANDROID_HOME/sdk/tools/bin:$ANDROID_HOME/sdk/build-tools/$BUILD_TOOLS:$ANDROID_HOME/sdk/platform-tools:$ANDROID_HOME/cmdline-tools/bin:$PATH
-
-WORKDIR $HOME
