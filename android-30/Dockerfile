@@ -41,6 +41,8 @@ RUN apt-get update \
         bzip2 \
         git \
         curl \
+        librsvg2-2 \
+        imagemagick \
     && apt-get autoremove -y \
     && rm -rf /var/cache/apt/* \
     && rm -rf /var/lib/apt/lists/* \
