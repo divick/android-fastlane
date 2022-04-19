@@ -4,7 +4,7 @@ FROM openjdk:${OPENJDK_VERSION}-slim
 LABEL maintainer Divick K.<divick@gorapid.io>
 
 ARG CMDLINE_TOOLS_VERSION="7302050"
-ARG BUILD_TOOLS="29.0.3"
+ARG BUILD_TOOLS="30.0.2"
 ARG TARGET_SDK="30"
 ARG RUBY_VERSION="3.0.2"
 ARG FASTLANE_VERSION="2.199.0"
@@ -20,7 +20,7 @@ RUN test -n "$FASTLANE_VERSION"
 # container when using `docker run` command) as well as during the
 # `docker build` command
 ENV HOME=/root
-ENV ANDROID_HOME=$HOME/android
+ARG ANDROID_HOME=$HOME/android
 
 # 1. Install required dependencies via apt
 # 2. Download and extract Android android sdk and tools
