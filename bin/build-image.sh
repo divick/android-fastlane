@@ -1,7 +1,12 @@
 #!/bin/bash
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+PROJECT_ROOT=$DIR/..
+
+cd $PROJECT_ROOT
+
 _usage="
-Usage: TARGET_SDK=[27|28|29|30] ./bin/build-image.sh
+Usage: TARGET_SDK=[27|28|29|30|31|32|33|34] ./bin/build-image.sh
 "
 if [[ ! -v TARGET_SDK ]]; then
   echo "Please specify TARGET_SDK to build.";
