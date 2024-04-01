@@ -44,6 +44,8 @@ RUN apt-get update \
         bzip2 \
         git \
         curl \
+        librsvg2-2 \
+        imagemagick \
         libffi-dev \
         libyaml-dev \
         xz-utils \
